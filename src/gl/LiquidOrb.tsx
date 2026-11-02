@@ -28,7 +28,7 @@ const noise = /* glsl */ `
   }
 `
 
-const vertexShader = /* glsl */ `
+export const liquidVertex = /* glsl */ `
   uniform float uTime;
   uniform float uAmp;
   uniform float uFreq;
@@ -53,7 +53,7 @@ const vertexShader = /* glsl */ `
   }
 `
 
-const fragmentShader = /* glsl */ `
+export const liquidFragment = /* glsl */ `
   uniform float uAmp;
   varying float vDisp;
   void main(){
@@ -81,7 +81,7 @@ export function LiquidOrb() {
     const t = state.clock.getElapsedTime()
     uniforms.uTime.value = t
     // hero sonrası görünür, sayfa ilerledikçe sağa ve sola salınır
-    const appear = THREE.MathUtils.smoothstep(s, 0.45, 1.15)
+    const appear = THREE.MathUtils.smoothstep(s, 0.85, 1.5)
     const narrow = viewport.width < 6
     const baseScale = (narrow ? 1.05 : 1.45) * appear
     const sway = Math.sin(s * 0.9) * (narrow ? 0.4 : 1)
@@ -104,8 +104,8 @@ export function LiquidOrb() {
         <sphereGeometry args={[1, 160, 160]} />
         <CustomShaderMaterial
           baseMaterial={THREE.MeshPhysicalMaterial}
-          vertexShader={vertexShader}
-          fragmentShader={fragmentShader}
+          vertexShader={liquidVertex}
+          fragmentShader={liquidFragment}
           uniforms={uniforms}
           metalness={0.65}
           roughness={0.16}

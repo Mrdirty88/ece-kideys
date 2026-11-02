@@ -111,35 +111,48 @@ export function Hero(_: { fallback: boolean }) {
   const first = 'Ece'
   const last = 'Kıdeyş'
   return (
-    <section id="top" className="relative flex h-[100svh] min-h-[560px] flex-col justify-end overflow-hidden">
-      {(
-        <div className="absolute inset-0 -z-10" aria-hidden="true">
-          <img
-            src="./img/hero-1200.webp"
-            alt=""
-            className="h-full w-full object-cover object-[78%_30%] grayscale"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-violet/50 via-transparent to-ember/45 mix-blend-color" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-        </div>
-      )}
+    <section id="top" className="relative flex h-[100svh] min-h-[640px] flex-col justify-end overflow-hidden">
+      {/* WebGL yoksa da akışkan his veren yedek zemin */}
+      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="absolute -left-[20%] top-[10%] h-[70vmax] w-[70vmax] rounded-full bg-violet/35 blur-[90px]" />
+        <div className="absolute -right-[10%] -top-[20%] h-[60vmax] w-[60vmax] rounded-full bg-ember/30 blur-[100px]" />
+      </div>
+
+      {/* Sabit fotoğraf: bozulmaz, oynamaz; çevresi akışkan ve 3D */}
+      <motion.div
+        id="hero-photo"
+        className="absolute left-1/2 top-[10svh] h-[46svh] w-[min(72vw,34svh)] -translate-x-1/2 md:left-auto md:right-[7vw] md:top-[12svh] md:h-[80svh] md:w-[min(36vw,60svh)] md:translate-x-0"
+        initial={{ clipPath: 'inset(100% 0% 0% 0% round 999px 999px 28px 28px)' }}
+        animate={{ clipPath: 'inset(0% 0% 0% 0% round 999px 999px 28px 28px)' }}
+        transition={{ duration: 1.4, ease, delay: INTRO_DELAY }}
+      >
+        <img
+          src="./img/hero-1200.webp"
+          srcSet="./img/hero-720.webp 720w, ./img/hero-1200.webp 1200w"
+          sizes="(min-width: 768px) 36vw, 78vw"
+          alt="Ece Kıdeyş, siyah beyaz portre"
+          className="h-full w-full rounded-t-full rounded-b-[28px] object-cover object-[72%_22%] shadow-[0_40px_120px_-20px_rgba(139,61,255,.55)]"
+        />
+        <div className="pointer-events-none absolute inset-0 rounded-t-full rounded-b-[28px] ring-1 ring-inset ring-cream/15" />
+      </motion.div>
+
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 pb-8 sm:px-8 sm:pb-12">
         <motion.p
-          className="mb-5 max-w-[22ch] font-serif text-[clamp(1.2rem,min(2.6vw,3.6svh),2.1rem)] italic leading-[1.1] text-cream/90"
+          className="mb-4 max-w-[24ch] font-serif text-[clamp(1.35rem,min(3vw,4svh),2.6rem)] italic leading-[1.08] text-cream"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease, delay: INTRO_DELAY + 1.1 }}
         >
           {artist.tagline}
         </motion.p>
-        <h1 className="display text-[clamp(3.4rem,min(17vw,24svh),17.5rem)] text-cream" aria-label={artist.name}>
+        <h1 className="display text-[clamp(3.6rem,min(16vw,22svh),16rem)] text-cream [text-shadow:0_8px_60px_rgba(11,7,16,.55)]" aria-label={artist.name}>
           {[first, last].map((word, wi) => (
             <span key={word} className={`block ${wi === 1 ? 'text-ember' : ''}`} aria-hidden="true">
               {[...word].map((ch, i) => (
-                <span key={i} className="inline-block overflow-hidden pb-[0.04em] align-bottom">
+                <span key={i} className="-mb-[0.2em] inline-block overflow-hidden pb-[0.24em] align-bottom">
                   <motion.span
                     className="inline-block"
-                    initial={{ y: '105%' }}
+                    initial={{ y: '115%' }}
                     animate={{ y: '0%' }}
                     transition={{ duration: 1.3, ease, delay: INTRO_DELAY + 0.25 + (wi * 3 + i) * 0.06 }}
                   >
@@ -151,7 +164,7 @@ export function Hero(_: { fallback: boolean }) {
           ))}
         </h1>
         <motion.div
-          className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8"
+          className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: INTRO_DELAY + 1.3 }}
@@ -160,7 +173,7 @@ export function Hero(_: { fallback: boolean }) {
             Şarkıları dinle
             <Arrow className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
           </a>
-          <a href="#talep" className="inline-flex h-12 items-center rounded-full border border-cream/35 px-6 font-medium text-cream transition-colors hover:border-ember hover:text-flame">
+          <a href="#talep" className="inline-flex h-12 items-center rounded-full border border-cream/35 bg-ink/30 px-6 font-medium text-cream transition-colors hover:border-ember hover:text-flame">
             Sahne için davet et
           </a>
           <span className="ml-auto hidden text-sm text-mist md:block">{artist.role}</span>

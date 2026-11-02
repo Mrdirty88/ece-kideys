@@ -35,10 +35,10 @@ export function SplitTitle({ text, className = '', delay = 0, as = 'h2' }: { tex
           {[...w].map((ch) => {
             const i = idx++
             return (
-              <span key={i} className="inline-block overflow-hidden pb-[0.06em] align-bottom">
+              <span key={i} className="-mb-[0.2em] inline-block overflow-hidden pb-[0.24em] align-bottom">
                 <motion.span
                   className="inline-block"
-                  variants={{ hidden: { y: '110%' }, show: { y: '0%' } }}
+                  variants={{ hidden: { y: '120%' }, show: { y: '0%' } }}
                   transition={{ duration: 1.1, ease, delay: delay + i * 0.035 }}
                 >
                   {ch}

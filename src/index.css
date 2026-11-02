@@ -146,3 +146,7 @@ input[type='date'].field::-webkit-calendar-picker-indicator {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* WebGL fotoğrafı çizdiğinde DOM görseli yalnız yerleşim için kalır */
+.gl-photo #hero-photo img { opacity: 0; }
+.gl-photo #hero-photo > div { opacity: 0; }

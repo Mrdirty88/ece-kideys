@@ -2,7 +2,8 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, PerformanceMonitor } from '@react-three/drei'
 import { Suspense, useEffect, useState } from 'react'
 import * as THREE from 'three'
-import { InkPortrait } from './InkPortrait'
+import { FluidBackground } from './FluidBackground'
+import { HeroHalo } from './HeroHalo'
 import { LiquidOrb } from './LiquidOrb'
 
 export default function Scene() {
@@ -31,7 +32,8 @@ export default function Scene() {
       >
         <PerformanceMonitor onDecline={() => setDpr(1)} />
         <Suspense fallback={null}>
-          <InkPortrait />
+          <FluidBackground />
+          <HeroHalo />
           <LiquidOrb />
           <Environment resolution={256} frames={1}>
             <color attach="background" args={['#0b0710']} />
