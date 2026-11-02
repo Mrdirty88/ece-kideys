@@ -1,0 +1,148 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/unbounded';
+@import '@fontsource-variable/inter-tight';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+
+@theme {
+  --color-ink: #0b0710;
+  --color-night: #140b1f;
+  --color-plum: #2a0e4a;
+  --color-violet: #8b3dff;
+  --color-lilac: #c9a8ff;
+  --color-ember: #ff6a1a;
+  --color-flame: #ff8a3d;
+  --color-cream: #f5eee6;
+  --color-mist: #b9adc9;
+  --color-gold: #d6af5f;
+  --color-gold-light: #f0d58c;
+  --color-onyx: #0a0a0b;
+  --font-display: 'Unbounded Variable', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter Tight Variable', system-ui, sans-serif;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  overflow-x: clip;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--color-ink);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-ember);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-flame);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+}
+
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-fire {
+  background: linear-gradient(100deg, var(--color-flame) 0%, var(--color-ember) 35%, var(--color-violet) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(245 238 230 / 0.25);
+  padding: 0.85rem 0 0.7rem;
+  font-size: 1.05rem;
+  color: var(--color-cream);
+  transition: border-color 0.25s;
+  border-radius: 0;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--color-flame);
+}
+h1, h2, h3 { text-wrap: balance; }
+
+.field::placeholder {
+  color: rgb(185 173 201 / 0.55);
+}
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #ff8a3d 50%), linear-gradient(135deg, #ff8a3d 50%, transparent 50%);
+  background-position: calc(100% - 12px) 55%, calc(100% - 6px) 55%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+select.field option {
+  background: #140b1f;
+  color: #f5eee6;
+}
+input[type='date'].field::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(1) hue-rotate(330deg) saturate(4);
+}
+
+.chip {
+  border: 1px solid rgb(245 238 230 / 0.22);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  user-select: none;
+}
+.chip:has(input:checked) {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  border-color: var(--color-cream);
+}
+.chip:has(input:focus-visible) {
+  outline: 2px solid var(--color-flame);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
