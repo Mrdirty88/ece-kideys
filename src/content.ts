@@ -3,7 +3,7 @@
 export const artist = {
   name: 'Ece Kıdeyş',
   role: 'Şarkıcı · Şan Eğitmeni',
-  tagline: 'Siyah beyaz bir sahneye dökülen mor ve turuncu bir ses.',
+  tagline: 'Ateşi saçında, makamı sesinde. Sahne ona ait.',
 }
 
 export const links = {

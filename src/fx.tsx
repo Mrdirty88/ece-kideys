@@ -10,6 +10,7 @@ import {
   wrap,
 } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
+import { artist } from './content'
 import { prefersReducedMotion } from './scroll'
 import { ease } from './ui'
 
@@ -63,7 +64,7 @@ export function Intro() {
             </span>
             <div className="flex items-end justify-between gap-6">
               <p className="max-w-[18ch] font-serif text-[clamp(1.6rem,4vw,3rem)] italic leading-[1.05] text-cream/85">
-                Siyah beyaz bir sahneye dökülen mor ve turuncu bir ses.
+                {artist.tagline}
               </p>
               <span className="display text-[clamp(5rem,18vw,16rem)] tabular-nums text-cream">
                 {n}
